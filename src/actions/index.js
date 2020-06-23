@@ -1,0 +1,10 @@
+export { 
+    GET_POSTS_REQUEST,
+    GET_POSTS_REQUEST_FAILED,
+    GET_POSTS_REQUEST_SUCCESS,
+    getPosts,
+    ADD_POST_REQUEST,
+    ADD_POST_REQUEST_SUCCESS,
+    ADD_POST_REQUEST_FAILED,
+    addPost
+} from './postsAction'

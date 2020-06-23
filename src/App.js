@@ -1,60 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import User from './User'
+import React from 'react'
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import { Menu, Segment } from 'semantic-ui-react'
+import Home from './Home'
+import About from './About'
+import Contact from './Contact'
+import Error from './Error'
 
 
-class App extends Component {
+const App = () => {
 
-  state  = {
-    firstName: '',
-    lastName: '',
-  }
-
-  handleReset = () => {
-    this.setState({
-      firstName: '',
-      lastName: ''
-    })
-  }
-
-  handleSubmit = () => {
-    let { firstName, lastName } = this.state
-  }
-
-  handleChange = (e) => {
-    let key = e.target.name
-    this.setState({
-      [key]: e.target.value
-    })
-  }
-
-  render() {
     return (
-      <div>
-        <h1>My first react project</h1>
-        <User 
-          user={this.state}
-        />
-        <form className="form">
-          <label>Name</label>
-          <input
-              name="firstName"
-              value={this.firstName}
-              onChange={(e) => this.handleChange(e)}
-          />
-          <input
-              name="lastName"
-              value={this.lastName}
-              onChange={(e) => this.handleChange(e)}
-          />
-          <button onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.handleReset}>Reset</button>
-        </form>
-      </div>
+      <BrowserRouter>
+        <Segment>
+          <Menu fixed='top' inverted>
+              <Menu.Item header>
+                <Link to="/">React App</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/">Home</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/about">About</Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to="/contact">Contact US</Link>
+              </Menu.Item>
+          </Menu>
+        </Segment>
+        <Segment>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/contact' component={Contact} />
+            <Route component={Error} />
+          </Switch>
+        </Segment>
+      </BrowserRouter>
     )
-  }
-
 }
 
 
